@@ -259,6 +259,7 @@ h2 {
     color: #666;
     margin-bottom: 20px;
     line-height: 1.6;
+    display: none;
 }
 
 .price {
@@ -266,6 +267,69 @@ h2 {
     font-weight: bold;
     color: #ff6b9d;
     margin-bottom: 20px;
+}
+
+.description-btn {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.description-btn:hover {
+    background: #ff6b9d;
+    transform: scale(1.05);
+}
+
+/* Carousel */
+.carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-item {
+    min-width: 100%;
+    display: none;
+}
+
+.carousel-item.active {
+    display: block;
+}
+
+.carousel-prev, .carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 50%;
+}
+
+.carousel-prev {
+    left: 10px;
+}
+
+.carousel-next {
+    right: 10px;
+}
+
+.carousel-prev:hover, .carousel-next:hover {
+    background: rgba(0, 0, 0, 0.8);
 }
 
 .add-to-cart {
@@ -546,17 +610,20 @@ footer {
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
 }
 
 .modal-content {
     background-color: #fff;
-    margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
     max-width: 600px;
     border-radius: 20px;
     position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
 .close {
@@ -569,6 +636,10 @@ footer {
 
 .close:hover {
     color: #000;
+}
+
+.modal-content p {
+    white-space: pre-line;
 }
 
 @media (max-width: 768px) {

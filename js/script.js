@@ -50,6 +50,8 @@
         const modal = document.getElementById('category-modal');
         const modalTitle = document.getElementById('modal-title');
         const modalDescription = document.getElementById('modal-description');
+        const modalImage = document.getElementById('modal-image');
+        const modalPrice = document.getElementById('modal-price');
         const closeBtn = document.querySelector('.close');
 
         document.querySelectorAll('.category-card').forEach(card => {
@@ -58,34 +60,86 @@
                 let description = '';
 
                 switch (title) {
-                    case '🏋️ Prise de Masse':
+                    case ' Prise de Masse':
                         description = 'Découvrez notre gamme de produits dédiés à la prise de masse musculaire. Gainers riches en calories, protéines de haute qualité et suppléments pour maximiser vos gains. Idéal pour les sportifs cherchant à développer leur masse musculaire de manière efficace et saine.';
                         break;
-                    case '💪 Protéines':
+                    case ' Protéines':
                         description = 'Une sélection complète de protéines : whey, caséine, isolat, végétales. Choisissez la source de protéines qui convient à votre régime alimentaire et à vos objectifs sportifs. Qualité premium pour une récupération optimale.';
                         break;
-                    case '⚡ Performance':
+                    case ' Performance':
                         description = 'Boostez vos performances avec notre collection de suppléments : créatine, BCAA, pré-workout, caféine. Améliorez votre endurance, votre force et votre concentration pendant l\'entraînement.';
                         break;
-                    case '🌾 Céréales & Snacks':
+                    case ' Céréales & Snacks':
                         description = 'Des céréales complètes, flocons d\'avoine bio, barres protéinées et snacks healthy. Nourrissez-vous sainement entre les repas avec des produits riches en nutriments et faibles en sucres ajoutés.';
                         break;
                 }
 
                 modalTitle.textContent = title;
                 modalDescription.textContent = description;
-                modal.style.display = 'block';
+                modalImage.src = ''; // No image for categories
+                modalImage.style.display = 'none';
+                modalPrice.style.display = 'none';
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
             });
         });
 
         closeBtn.addEventListener('click', () => {
             modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
         });
 
         window.addEventListener('click', (e) => {
             if (e.target === modal) {
                 modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
             }
+        });
+
+        // Product description modal
+        document.querySelectorAll('.description-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const card = this.closest('.product-card');
+                const activeItem = card.querySelector('.carousel-item.active');
+                const title = activeItem ? activeItem.querySelector('h3').textContent : card.querySelector('h3').textContent;
+                const description = activeItem ? activeItem.querySelector('p').innerHTML : card.querySelector('p').innerHTML;
+                const price = activeItem ? activeItem.querySelector('.price').textContent : card.querySelector('.price').textContent;
+                const imageSrc = activeItem ? activeItem.querySelector('.product-img').src : card.querySelector('.product-img').src;
+
+                modalTitle.textContent = title;
+                modalDescription.innerHTML = description;
+                modalPrice.textContent = price;
+                modalPrice.style.display = 'block';
+                modalImage.src = imageSrc;
+                modalImage.style.display = 'block';
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Carousel functionality
+        document.querySelectorAll('.carousel').forEach(carousel => {
+            const inner = carousel.querySelector('.carousel-inner');
+            const items = carousel.querySelectorAll('.carousel-item');
+            const prevBtn = carousel.querySelector('.carousel-prev');
+            const nextBtn = carousel.querySelector('.carousel-next');
+            let currentIndex = 0;
+
+            function showItem(index) {
+                items.forEach((item, i) => {
+                    item.classList.toggle('active', i === index);
+                });
+            }
+
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex > 0) ? currentIndex - 1 : items.length - 1;
+                showItem(currentIndex);
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex < items.length - 1) ? currentIndex + 1 : 0;
+                showItem(currentIndex);
+            });
         });
 
         // Generate QR Code for WhatsApp
