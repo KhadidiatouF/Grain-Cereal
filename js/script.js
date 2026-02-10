@@ -54,33 +54,53 @@
         const modalPrice = document.getElementById('modal-price');
         const closeBtn = document.querySelector('.close');
 
-        document.querySelectorAll('.category-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const title = this.querySelector('h3').textContent;
-                let description = '';
-
-                switch (title) {
-                    case ' Prise de Masse':
-                        description = 'Découvrez notre gamme de produits dédiés à la prise de masse musculaire. Gainers riches en calories, protéines de haute qualité et suppléments pour maximiser vos gains. Idéal pour les sportifs cherchant à développer leur masse musculaire de manière efficace et saine.';
-                        break;
-                    case ' Protéines':
-                        description = 'Une sélection complète de protéines : whey, caséine, isolat, végétales. Choisissez la source de protéines qui convient à votre régime alimentaire et à vos objectifs sportifs. Qualité premium pour une récupération optimale.';
-                        break;
-                    case ' Performance':
-                        description = 'Boostez vos performances avec notre collection de suppléments : créatine, BCAA, pré-workout, caféine. Améliorez votre endurance, votre force et votre concentration pendant l\'entraînement.';
-                        break;
-                    case ' Céréales & Snacks':
-                        description = 'Des céréales complètes, flocons d\'avoine bio, barres protéinées et snacks healthy. Nourrissez-vous sainement entre les repas avec des produits riches en nutriments et faibles en sucres ajoutés.';
-                        break;
-                }
-
+        // Handle pack button clicks
+        document.querySelectorAll('.pack-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const imageSrc = this.getAttribute('data-image');
+                const title = this.getAttribute('data-title');
+                
                 modalTitle.textContent = title;
-                modalDescription.textContent = description;
-                modalImage.src = ''; // No image for categories
-                modalImage.style.display = 'none';
+                modalImage.src = imageSrc;
+                modalImage.style.display = 'block';
                 modalPrice.style.display = 'none';
+                modalDescription.textContent = '';
                 modal.style.display = 'flex';
                 document.body.style.overflow = 'hidden';
+            });
+        });
+
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Only trigger if not clicking on a pack button
+                if (!e.target.classList.contains('pack-btn')) {
+                    const title = this.querySelector('h3').textContent;
+                    let description = '';
+
+                    switch (title) {
+                        case ' Prise de Masse':
+                            description = 'Découvrez notre gamme de produits dédiés à la prise de masse musculaire. Gainers riches en calories, protéines de haute qualité et suppléments pour maximiser vos gains. Idéal pour les sportifs cherchant à développer leur masse musculaire de manière efficace et saine.';
+                            break;
+                        case ' Protéines':
+                            description = 'Une sélection complète de protéines : whey, caséine, isolat, végétales. Choisissez la source de protéines qui convient à votre régime alimentaire et à vos objectifs sportifs. Qualité premium pour une récupération optimale.';
+                            break;
+                        case ' Performance':
+                            description = 'Boostez vos performances avec notre collection de suppléments : créatine, BCAA, pré-workout, caféine. Améliorez votre endurance, votre force et votre concentration pendant l\'entraînement.';
+                            break;
+                        case ' Céréales & Snacks':
+                            description = 'Des céréales complètes, flocons d\'avoine bio, barres protéinées et snacks healthy. Nourrissez-vous sainement entre les repas avec des produits riches en nutriments et faibles en sucres ajoutés.';
+                            break;
+                    }
+
+                    modalTitle.textContent = title;
+                    modalDescription.textContent = description;
+                    modalImage.src = ''; // No image for categories
+                    modalImage.style.display = 'none';
+                    modalPrice.style.display = 'none';
+                    modal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                }
             });
         });
 

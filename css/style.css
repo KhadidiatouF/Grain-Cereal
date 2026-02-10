@@ -378,6 +378,34 @@ h2 {
     margin-bottom: 10px;
 }
 
+.category-img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+
+.pack-btn {
+    background: #fff;
+    color: #ff6b9d;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.pack-btn:hover {
+    background: #780045;
+    color: #fff;
+    transform: scale(1.05);
+}
+
 /* Conseils */
 .tips-grid {
     display: grid;
