@@ -28,8 +28,6 @@ nav {
 .logo {
     font-size: 26px;
     font-weight: bold;
-    letter-spacing: 2px;
-    color: #780045;
 ;
 }
 
@@ -180,7 +178,17 @@ nav {
     color: #ffffff;
     text-transform: uppercase;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+}
+
+.hero-description {
+    font-size: 22px;
+    color: #ffffff;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 30px auto;
+    line-height: 1.6;
+    font-weight: 500;
 }
 
 .explore-btn {
@@ -598,6 +606,18 @@ footer {
     min-width: 250px;
 }
 
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    flex: 2;
+    min-width: 600px;
+    padding-top: 15px;
+}
+
+
+
 .contact-section h3 {
     margin-bottom: 20px;
     color: #cc5ca6;
@@ -650,6 +670,37 @@ footer {
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
+.location-section {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.location-section h3{
+    margin-bottom: 10px;
+    color: #cc5ca6;
+    font-size: 24px;
+    font-weight: 600;
+    margin-top: 0;
+}
+
+
+.location-section p {
+    color: #ccc;
+    font-size: 16px;
+    font-weight: 500;
+    background: #2f0b51;
+    padding: 15px 25px;
+    border-radius: 10px;
+    display: inline-block;
+    border: 2px solid #cc5ca6;
+}
+
+.location-section iframe {
+    border-radius: 15px;
+    border: 3px solid #cc5ca6;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
 @media (max-width: 768px) {
     footer {
         padding: 40px 20px;
@@ -658,6 +709,10 @@ footer {
         flex-direction: column;
         text-align: center;
         gap: 30px;
+    }
+    .footer-bottom {
+        flex-direction: column;
+        min-width: 100%;
     }
     .social-links {
         flex-wrap: wrap;
@@ -758,6 +813,11 @@ footer {
     .hero-title {
         font-size: 60px;
         letter-spacing: 8px;
+    }
+    
+    .hero-description {
+        font-size: 16px;
+        padding: 0 20px;
     }
 
     .hero-image {

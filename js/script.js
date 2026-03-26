@@ -212,3 +212,18 @@
                 navLinks.forEach(l => l.style.animation = '');
             }
         });
+        // Typing Animation
+        const text = "Ton corps mérite autant d'amour que tes rêves. Chaque repas, chaque smoothie, chaque squat te rapproche de ton objectif. Ne lâche rien, tu es belle, forte et capable";
+        const typingElement = document.getElementById('typing-text');
+        let index = 0;
+
+        function type() {
+            if (index < text.length) {
+                typingElement.textContent += text.charAt(index);
+                index++;
+                setTimeout(type, 100);
+            }
+        }
+
+        // Start typing animation when page loads
+        window.addEventListener('load', type);
